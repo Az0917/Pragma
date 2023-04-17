@@ -22,11 +22,12 @@ class CatProvider extends ChangeNotifier {
         .map((json) => Breed(
               name: json['name'],
               origin: json['origin'],
-              intelligence: json['intelligence']
+              intelligence: json['intelligence'],
+              reference_image_id: json['reference_image_id'] == null ? "000" : json['reference_image_id']
             ))
         .toList();
-        return breeds;
+    notifyListeners();
+    return breeds;
+    
   }
-
-
 }

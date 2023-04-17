@@ -1,4 +1,5 @@
 import 'package:cats/providers/cat_provider.dart';
+import 'package:cats/providers/imagen_provider.dart';
 import 'package:cats/screens/cats_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,8 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers:[
-        ChangeNotifierProvider(create: (_) => CatProvider(), lazy: false,)
+        ChangeNotifierProvider<CatProvider>(create: (_) => CatProvider(), lazy: false,),
+        ChangeNotifierProvider<ImagenProvider>(create: (_) => ImagenProvider(), lazy: false,)
       ],
       child: MyApp(),
     );

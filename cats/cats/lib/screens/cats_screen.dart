@@ -6,26 +6,29 @@ import 'package:provider/provider.dart';
 
 import '../models/breed.dart';
 import '../providers/cat_provider.dart';
+import '../providers/imagen_provider.dart';
 
 class CatsScreen extends StatelessWidget {
   const CatsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Breed> gatos = [];
-    final catsProvider = Provider.of<CatProvider>(context); 
+    
+    final catsProvider = Provider.of<CatProvider>(context);
+    List<Breed> gatos = catsProvider.breeds;
     
     return Scaffold(
       appBar: AppBar(
         title: const Text('Catbreeds'),
         centerTitle: true,
       ),
-      body: ListView(
-        children: const [
-          CatCardScreen(image: 'image', nombre: 'nombre', origen: 'origen', inteli: 2)
-        ],
-
-      ),
+      body: ListView.builder(
+        itemCount: gatos.length,
+        itemBuilder: ((context, index) {
+          return CatCardScreen(
+          image: gatos[index].reference_image_id , nombre: gatos[index].name, origen: gatos[index].origin, inteli: gatos[index].intelligence);
+          } )
+        )
       
     );
   }
